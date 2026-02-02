@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flyer A4 - Formation Informatique</title>
+  <style>
+    :root{
+      --primary:#0b5ed7;
+      --secondary:#0dcaf0;
+      --dark:#0f172a;
+      --muted:#475569;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --border:#e2e8f0;
+      --success:#16a34a;
+      --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ddd;
+    }
+
+    /* A4 page */
+    .page{
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      position: relative;
+      overflow: hidden;
+      padding: 18mm 14mm;
+    }
+
+    /* Decorative shapes */
+    .shape1,.shape2,.shape3{
+      position:absolute; border-radius: 999px; filter: blur(0px);
+      opacity:.55;
+    }
+    .shape1{width:240mm;height:240mm; left:-120mm; top:-150mm; background: radial-gradient(circle, rgba(11,94,215,.35), transparent 60%);}
+    .shape2{width:190mm;height:190mm; right:-110mm; top:-90mm; background: radial-gradient(circle, rgba(13,202,240,.30), transparent 60%);}
+    .shape3{width:220mm;height:220mm; right:-130mm; bottom:-140mm; background: radial-gradient(circle, rgba(22,163,74,.22), transparent 60%);}
+
+    .header{
+      position:relative;
+      z-index:2;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: 20px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 16px 45px rgba(2,6,23,.08);
+      text-align:center;
+    }
+    .header h1{
+      margin:0;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      color: var(--dark);
+    }
+    .header p{
+      margin:5px 0 0;
+      font-weight:700;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .title{
+      position:relative;
+      z-index:2;
+      margin-top: 14px;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color:#fff;
+      border-radius: 22px;
+      padding: 18px 18px;
+      box-shadow: 0 18px 55px rgba(2,6,23,.22);
+      overflow:hidden;
+    }
+    .title::after{
+      content:"";
+      position:absolute;
+      width: 220px; height: 220px;
+      right:-80px; top:-90px;
+      background: radial-gradient(circle, rgba(13,202,240,.35), transparent 60%);
+      transform: rotate(10deg);
+    }
+    .title h2{
+      margin:0;
+      font-size: 26px;
+      line-height:1.15;
+      position:relative;
+      z-index:2;
+    }
+    .title .subtitle{
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,.85);
+      font-weight:600;
+      position:relative;
+      z-index:2;
+      line-height:1.6;
+    }
+    .chips{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      position:relative;
+      z-index:2;
+    }
+    .chip{
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      color:#fff;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+
+    .grid{
+      position:relative;
+      z-index:2;
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 12px;
+    }
+    .card{
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: 20px;
+      padding: 14px 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 45px rgba(2,6,23,.07);
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--dark);
+    }
+    ul{
+      margin:0;
+      padding-left: 18px;
+      color: #0f172a;
+      font-size: 13px;
+      line-height:1.55;
+      font-weight: 650;
+    }
+    li{margin:6px 0}
+    .meta{
+      display:grid;
+      gap:8px;
+      font-size: 13px;
+      color: var(--dark);
+      font-weight: 750;
+    }
+    .meta span{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid rgba(226,232,240,.9);
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 10px 10px;
+    }
+    .meta b{color: var(--muted); font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:.4px}
+
+    .price{
+      margin-top: 10px;
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: linear-gradient(135deg, rgba(11,94,215,.10), rgba(13,202,240,.10));
+      border: 1px solid rgba(11,94,215,.18);
+    }
+    .price .big{
+      font-size: 26px;
+      font-weight: 950;
+      color: var(--primary);
+    }
+    .price .small{
+      margin-top:4px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight:800;
+    }
+
+    .cta{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+    }
+    .btn{
+      flex:1;
+      text-align:center;
+      padding: 12px 12px;
+      border-radius: 16px;
+      font-weight: 950;
+      font-size: 13px;
+      border: none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-block;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      color:#fff;
+      box-shadow: 0 12px 25px rgba(37,99,235,.22);
+    }
+    .btn-outline{
+      background:#fff;
+      color: var(--dark);
+      border:1px solid rgba(226,232,240,.9);
+    }
+
+    .footer{
+      position:absolute;
+      left: 14mm;
+      right: 14mm;
+      bottom: 12mm;
+      z-index:2;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(15,23,42,.8);
+      font-weight: 800;
+    }
+    .footer .note{
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: 999px;
+      padding: 10px 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Print settings */
+    @page { size: A4; margin: 0; }
+    @media print {
+      body{background:#fff}
+      .page{margin:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+    <div class="shape3"></div>
+
+    <div class="header">
+      <h1>RÉPUBLIQUE DU TCHAD</h1>
+      <p>Unité – Travail – Progrès</p>
+    </div>
+
+    <div class="title">
+      <h2>📢 FORMATION PROFESSIONNELLE EN INFORMATIQUE</h2>
+      <div class="subtitle">
+        Débutant → Intermédiaire • 100% pratique • Attestation en fin de formation
+      </div>
+      <div class="chips">
+        <span class="chip">Windows</span>
+        <span class="chip">Bureautique</span>
+        <span class="chip">Internet & Email</span>
+        <span class="chip">IA selon le travail</span>
+        <span class="chip">Maintenance PC</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>📚 Modules de la formation</h3>
+        <ul>
+          <li>Utilisation du système d’exploitation <b>Windows</b></li>
+          <li><b>Word / Excel / PowerPoint</b> (bureautique professionnelle)</li>
+          <li><b>Internet & Email</b> (recherche efficace, pièces jointes, sécurité)</li>
+          <li><b>Intelligence Artificielle</b> : utilisation selon le travail (études, CV, business, administration…)</li>
+          <li><b>Maintenance Informatique</b> : pannes, optimisation, antivirus, mises à jour</li>
+          <li>Bonus : <b>cybersécurité</b> (arnaques, mots de passe, phishing)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>📍 Informations</h3>
+        <div class="meta">
+          <span><b>Lieu</b> <div>KOUMRA</div></span>
+          <span><b>Date</b> <div>Mi-Juillet 2026 → Septembre 2026</div></span>
+          <span><b>Organisateur</b> <div>Guiryenouba Zacharie</div></span>
+          <span><b>Suivi</b> <div>Ramadjita Alain</div></span>
+          <span><b>WhatsApp</b> <div>66525774 / 65674226</div></span>
+        </div>
+
+        <div class="price">
+          <div class="big">7 500 FCFA / mois</div>
+          <div class="small">Durée : 2 mois • Total : 15 000 FCFA • Places limitées</div>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary"
+             href="https://wa.me/23566525774?text=Bonjour%20je%20souhaite%20m%E2%80%99inscrire%20%C3%A0%20la%20formation%20informatique%20%C3%A0%20Koumra%20(Mi-Juillet%202026%20-%20Septembre%202026).">
+            💬 WhatsApp
+          </a>
+          <a class="btn btn-outline" href="mailto:guiryenouba@gmail.com">📧 Email</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">🎯 Objectif : autonomie complète sur ordinateur + compétences utiles au travail</div>
+      <div class="note">📞 Contact : 66525774 / 65674226</div>
+    </div>
+  </div>
+</body>
+</html>
