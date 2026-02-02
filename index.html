@@ -3,179 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flyer A4 - Formation Informatique</title>
+  <title>Inscription - Formation Informatique KOUMRA</title>
   <style>
     :root{
       --primary:#0b5ed7;
       --secondary:#0dcaf0;
       --dark:#0f172a;
-      --muted:#475569;
+      --muted:#64748b;
       --bg:#f8fafc;
       --card:#ffffff;
       --border:#e2e8f0;
       --success:#16a34a;
-      --danger:#ef4444;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: #ddd;
+      background: linear-gradient(120deg, #f8fafc, #eef2ff);
+      color: var(--dark);
     }
-
-    /* A4 page */
-    .page{
-      width: 210mm;
-      height: 297mm;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #f8fafc, #eef2ff);
-      position: relative;
-      overflow: hidden;
-      padding: 18mm 14mm;
+    .container{
+      width:min(1050px, 92%);
+      margin:auto;
+      padding:24px 0 50px;
     }
-
-    /* Decorative shapes */
-    .shape1,.shape2,.shape3{
-      position:absolute; border-radius: 999px; filter: blur(0px);
-      opacity:.55;
-    }
-    .shape1{width:240mm;height:240mm; left:-120mm; top:-150mm; background: radial-gradient(circle, rgba(11,94,215,.35), transparent 60%);}
-    .shape2{width:190mm;height:190mm; right:-110mm; top:-90mm; background: radial-gradient(circle, rgba(13,202,240,.30), transparent 60%);}
-    .shape3{width:220mm;height:220mm; right:-130mm; bottom:-140mm; background: radial-gradient(circle, rgba(22,163,74,.22), transparent 60%);}
-
-    .header{
+    .top{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 12px 40px rgba(2,6,23,.06);
       position:relative;
-      z-index:2;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: 20px;
-      padding: 14px 16px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 16px 45px rgba(2,6,23,.08);
+      overflow:hidden;
+    }
+    .top::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at 10% 10%, rgba(13,202,240,.18), transparent 40%),
+                  radial-gradient(circle at 90% 20%, rgba(11,94,215,.18), transparent 40%),
+                  radial-gradient(circle at 30% 90%, rgba(22,163,74,.12), transparent 45%);
+      pointer-events:none;
+    }
+    .top-content{position:relative; z-index:1}
+    .header{
       text-align:center;
+      margin-bottom: 12px;
     }
     .header h1{
       margin:0;
-      font-size: 16px;
+      font-size: 18px;
       text-transform: uppercase;
-      letter-spacing: .4px;
-      color: var(--dark);
+      letter-spacing:.4px;
     }
     .header p{
-      margin:5px 0 0;
+      margin:6px 0 0;
+      color:var(--muted);
       font-weight:700;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .title{
-      position:relative;
-      z-index:2;
-      margin-top: 14px;
-      background: linear-gradient(135deg, #0f172a, #111827);
-      color:#fff;
-      border-radius: 22px;
-      padding: 18px 18px;
-      box-shadow: 0 18px 55px rgba(2,6,23,.22);
-      overflow:hidden;
-    }
-    .title::after{
-      content:"";
-      position:absolute;
-      width: 220px; height: 220px;
-      right:-80px; top:-90px;
-      background: radial-gradient(circle, rgba(13,202,240,.35), transparent 60%);
-      transform: rotate(10deg);
-    }
-    .title h2{
-      margin:0;
-      font-size: 26px;
-      line-height:1.15;
-      position:relative;
-      z-index:2;
-    }
-    .title .subtitle{
-      margin-top: 10px;
       font-size: 13px;
-      color: rgba(255,255,255,.85);
-      font-weight:600;
-      position:relative;
-      z-index:2;
-      line-height:1.6;
-    }
-    .chips{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      position:relative;
-      z-index:2;
-    }
-    .chip{
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.16);
-      color:#fff;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-weight:800;
-      font-size: 12px;
-      letter-spacing:.2px;
     }
 
-    .grid{
-      position:relative;
-      z-index:2;
-      margin-top: 14px;
+    .hero{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 12px;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
     }
     .card{
-      background: rgba(255,255,255,.84);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: 20px;
-      padding: 14px 14px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 14px 45px rgba(2,6,23,.07);
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 12px 40px rgba(2,6,23,.06);
     }
-    .card h3{
+    .card h2{
       margin:0 0 10px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      color: var(--dark);
+      font-size: 18px;
     }
-    ul{
-      margin:0;
-      padding-left: 18px;
-      color: #0f172a;
-      font-size: 13px;
-      line-height:1.55;
-      font-weight: 650;
-    }
-    li{margin:6px 0}
-    .meta{
+    .info{
       display:grid;
-      gap:8px;
-      font-size: 13px;
+      gap:10px;
+      font-size: 14px;
       color: var(--dark);
-      font-weight: 750;
+      font-weight:700;
     }
-    .meta span{
+    .info div{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background:#f8fafc;
       display:flex;
       justify-content: space-between;
-      gap: 10px;
-      border: 1px solid rgba(226,232,240,.9);
-      background: #f8fafc;
-      border-radius: 14px;
-      padding: 10px 10px;
+      gap:10px;
     }
-    .meta b{color: var(--muted); font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:.4px}
-
+    .info b{
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing:.3px;
+    }
     .price{
       margin-top: 10px;
-      border-radius: 18px;
-      padding: 12px 12px;
+      border-radius: 16px;
+      padding: 12px;
       background: linear-gradient(135deg, rgba(11,94,215,.10), rgba(13,202,240,.10));
       border: 1px solid rgba(11,94,215,.18);
     }
@@ -186,136 +117,208 @@
     }
     .price .small{
       margin-top:4px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
       font-weight:800;
+      line-height:1.5;
     }
 
-    .cta{
-      margin-top: 12px;
+    form{
+      display:grid;
+      gap: 12px;
+    }
+    label{
+      font-weight:900;
+      font-size: 13px;
+      color: var(--dark);
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      outline:none;
+      font-size: 14px;
+      background:#fff;
+    }
+    textarea{min-height: 90px; resize: vertical}
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btns{
       display:flex;
       gap:10px;
+      flex-wrap:wrap;
+      margin-top: 4px;
     }
-    .btn{
-      flex:1;
-      text-align:center;
-      padding: 12px 12px;
-      border-radius: 16px;
-      font-weight: 950;
-      font-size: 13px;
-      border: none;
+    button{
+      border:none;
       cursor:pointer;
-      text-decoration:none;
-      display:inline-block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight:950;
+      font-size: 14px;
+      transition:.2s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
     .btn-primary{
       background: linear-gradient(135deg, var(--primary), #2563eb);
       color:#fff;
-      box-shadow: 0 12px 25px rgba(37,99,235,.22);
+      box-shadow: 0 10px 25px rgba(37,99,235,.25);
     }
+    .btn-primary:hover{transform: translateY(-1px)}
     .btn-outline{
       background:#fff;
-      color: var(--dark);
-      border:1px solid rgba(226,232,240,.9);
+      border:1px solid var(--border);
+      color:#0f172a;
+    }
+    .note{
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.6;
     }
 
-    .footer{
-      position:absolute;
-      left: 14mm;
-      right: 14mm;
-      bottom: 12mm;
-      z-index:2;
-      display:flex;
-      justify-content: space-between;
-      align-items:center;
-      gap: 10px;
-      font-size: 12px;
-      color: rgba(15,23,42,.8);
-      font-weight: 800;
-    }
-    .footer .note{
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: 999px;
-      padding: 10px 12px;
-      backdrop-filter: blur(8px);
-    }
-
-    /* Print settings */
-    @page { size: A4; margin: 0; }
-    @media print {
-      body{background:#fff}
-      .page{margin:0}
+    @media(max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="shape1"></div>
-    <div class="shape2"></div>
-    <div class="shape3"></div>
-
-    <div class="header">
-      <h1>RÉPUBLIQUE DU TCHAD</h1>
-      <p>Unité – Travail – Progrès</p>
-    </div>
-
-    <div class="title">
-      <h2>📢 FORMATION PROFESSIONNELLE EN INFORMATIQUE</h2>
-      <div class="subtitle">
-        Débutant → Intermédiaire • 100% pratique • Attestation en fin de formation
-      </div>
-      <div class="chips">
-        <span class="chip">Windows</span>
-        <span class="chip">Bureautique</span>
-        <span class="chip">Internet & Email</span>
-        <span class="chip">IA selon le travail</span>
-        <span class="chip">Maintenance PC</span>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>📚 Modules de la formation</h3>
-        <ul>
-          <li>Utilisation du système d’exploitation <b>Windows</b></li>
-          <li><b>Word / Excel / PowerPoint</b> (bureautique professionnelle)</li>
-          <li><b>Internet & Email</b> (recherche efficace, pièces jointes, sécurité)</li>
-          <li><b>Intelligence Artificielle</b> : utilisation selon le travail (études, CV, business, administration…)</li>
-          <li><b>Maintenance Informatique</b> : pannes, optimisation, antivirus, mises à jour</li>
-          <li>Bonus : <b>cybersécurité</b> (arnaques, mots de passe, phishing)</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>📍 Informations</h3>
-        <div class="meta">
-          <span><b>Lieu</b> <div>KOUMRA</div></span>
-          <span><b>Date</b> <div>Mi-Juillet 2026 → Septembre 2026</div></span>
-          <span><b>Organisateur</b> <div>Guiryenouba Zacharie</div></span>
-          <span><b>Suivi</b> <div>Ramadjita Alain</div></span>
-          <span><b>WhatsApp</b> <div>66525774 / 65674226</div></span>
+  <div class="container">
+    <div class="top">
+      <div class="top-content">
+        <div class="header">
+          <h1>RÉPUBLIQUE DU TCHAD</h1>
+          <p>Unité – Travail – Progrès</p>
         </div>
 
-        <div class="price">
-          <div class="big">7 500 FCFA / mois</div>
-          <div class="small">Durée : 2 mois • Total : 15 000 FCFA • Places limitées</div>
-        </div>
+        <div class="hero">
+          <!-- Info formation -->
+          <div class="card">
+            <h2>📢 Formation Informatique — KOUMRA</h2>
+            <p class="note">
+              Formation pratique pour débutants et intermédiaires : Windows, bureautique,
+              Internet, IA selon le travail, maintenance informatique + cybersécurité.
+            </p>
 
-        <div class="cta">
-          <a class="btn btn-primary"
-             href="https://wa.me/23566525774?text=Bonjour%20je%20souhaite%20m%E2%80%99inscrire%20%C3%A0%20la%20formation%20informatique%20%C3%A0%20Koumra%20(Mi-Juillet%202026%20-%20Septembre%202026).">
-            💬 WhatsApp
-          </a>
-          <a class="btn btn-outline" href="mailto:guiryenouba@gmail.com">📧 Email</a>
+            <div class="info">
+              <div><b>Lieu</b> <span>KOUMRA</span></div>
+              <div><b>Date</b> <span>Mi-Juillet 2026 → Septembre 2026</span></div>
+              <div><b>Organisateur</b> <span>Guiryenouba Zacharie</span></div>
+              <div><b>Suivi</b> <span>Ramadjita Alain</span></div>
+              <div><b>WhatsApp</b> <span>66525774 / 65674226</span></div>
+              <div><b>Email</b> <span>guiryenouba@gmail.com</span></div>
+            </div>
+
+            <div class="price">
+              <div class="big">7 500 FCFA / mois</div>
+              <div class="small">Durée : 2 mois • Total : 15 000 FCFA • Places limitées</div>
+            </div>
+
+            <p class="note">
+              ⚠️ L’inscription se fait via WhatsApp : remplissez le formulaire puis cliquez sur
+              <b>“Envoyer sur WhatsApp”</b>.
+            </p>
+          </div>
+
+          <!-- Formulaire -->
+          <div class="card">
+            <h2>📝 Formulaire d’inscription</h2>
+
+            <form id="formInscription">
+              <div>
+                <label>Nom & Prénom</label>
+                <input id="nom" type="text" placeholder="Ex: Mahamat Ali" required />
+              </div>
+
+              <div class="row">
+                <div>
+                  <label>Numéro WhatsApp</label>
+                  <input id="numero" type="tel" placeholder="Ex: 66xxxxxx" required />
+                </div>
+                <div>
+                  <label>Niveau</label>
+                  <select id="niveau" required>
+                    <option value="">-- Choisir --</option>
+                    <option>Débutant</option>
+                    <option>Intermédiaire</option>
+                    <option>Avancé</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label>Branche souhaitée (optionnel)</label>
+                <select id="branche">
+                  <option value="">-- Choisir --</option>
+                  <option>Formation Complète</option>
+                  <option>Une Seule Partie</option>
+                  <option>Maintenance Informatique</option>
+                  <option>Toutes les branches</option>
+                </select>
+              </div>
+
+              <div>
+                <label>Message (optionnel)</label>
+                <textarea id="message" placeholder="Ex: Je veux m'inscrire, je suis disponible les après-midis..."></textarea>
+              </div>
+
+              <div class="btns">
+                <button type="button" class="btn-primary" onclick="envoyerWhatsApp()">
+                  💬 Envoyer sur WhatsApp
+                </button>
+                <button type="reset" class="btn-outline">↩️ Réinitialiser</button>
+              </div>
+
+              <p class="note">
+                🔒 Vos informations servent uniquement à l’inscription à la formation.
+              </p>
+            </form>
+
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="footer">
-      <div class="note">🎯 Objectif : autonomie complète sur ordinateur + compétences utiles au travail</div>
-      <div class="note">📞 Contact : 66525774 / 65674226</div>
     </div>
   </div>
+
+  <script>
+    function envoyerWhatsApp() {
+      const nom = document.getElementById("nom").value.trim();
+      const numero = document.getElementById("numero").value.trim();
+      const niveau = document.getElementById("niveau").value.trim();
+      const branche = document.getElementById("branche").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!nom || !numero || !niveau) {
+        alert("Veuillez remplir : Nom, Numéro WhatsApp et Niveau.");
+        return;
+      }
+
+      const texte =
+`Bonjour, je souhaite m’inscrire à la Formation Informatique à KOUMRA.
+
+👤 Nom : ${nom}
+📱 Mon WhatsApp : ${numero}
+🎓 Niveau : ${niveau}
+📚 Branche : ${branche || "Non précisé"}
+🗓️ Période : Mi-Juillet 2026 → Septembre 2026
+
+📝 Message :
+${message || "Aucun message"}`;
+
+      // Numéro du formateur principal (Guiryenouba Zacharie)
+      const whatsappNumber = "23566525774";
+      const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(texte);
+
+      window.open(url, "_blank");
+    }
+  </script>
 </body>
 </html>
+
